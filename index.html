@@ -69,10 +69,17 @@
       font-weight: 800;
       letter-spacing: 0.02em;
       font-size: 1.08rem;
+      white-space: nowrap;
     }
 
     .logo span {
       color: #93c5fd;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 22px;
     }
 
     .nav-links {
@@ -85,6 +92,32 @@
 
     .nav-links a:hover {
       color: var(--white);
+    }
+
+    .language-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .language-switch button {
+      border: 0;
+      cursor: pointer;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: transparent;
+      color: #c8d5e6;
+      font-weight: 800;
+      font-size: 0.82rem;
+    }
+
+    .language-switch button.active {
+      color: #07111f;
+      background: var(--white);
     }
 
     .hero {
@@ -339,6 +372,10 @@
       color: var(--muted);
     }
 
+    .panel p + p {
+      margin-top: 14px;
+    }
+
     .panel ul {
       padding-left: 20px;
       display: grid;
@@ -488,11 +525,18 @@
       font-size: 0.92rem;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 980px) {
       nav {
         align-items: flex-start;
         flex-direction: column;
         padding: 18px 0;
+      }
+
+      .nav-right {
+        width: 100%;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
       }
 
       .nav-links {
@@ -523,11 +567,19 @@
     <div class="container">
       <nav>
         <a href="#top" class="logo">Kineletic <span>Sport Technologies</span></a>
-        <div class="nav-links">
-          <a href="#solution">SmartSki</a>
-          <a href="#market">Marché</a>
-          <a href="#business">Modèle</a>
-          <a href="#contact">Contact</a>
+
+        <div class="nav-right">
+          <div class="nav-links">
+            <a href="#solution" data-i18n="nav_solution">SmartSki</a>
+            <a href="#market" data-i18n="nav_market">Marché</a>
+            <a href="#business" data-i18n="nav_business">Modèle</a>
+            <a href="#contact" data-i18n="nav_contact">Contact</a>
+          </div>
+
+          <div class="language-switch" aria-label="Language switcher">
+            <button type="button" id="btn-fr" class="active" onclick="setLanguage('fr')">FR</button>
+            <button type="button" id="btn-en" onclick="setLanguage('en')">EN</button>
+          </div>
         </div>
       </nav>
     </div>
@@ -537,27 +589,27 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <span class="eyebrow">Ski de fond · Données · Performance</span>
-          <h1>Le ski intelligent, intégré directement dans l’équipement.</h1>
-          <p>
+          <span class="eyebrow" data-i18n="hero_eyebrow">Ski de fond · Données · Performance</span>
+          <h1 data-i18n="hero_title">Le ski intelligent, intégré directement dans l’équipement.</h1>
+          <p data-i18n="hero_text">
             SmartSki est une puce électronique intégrée à l’intérieur même du ski de fond.
             Elle capture les mouvements du skieur, analyse sa performance et communique les
             indicateurs clés en temps réel par Bluetooth.
           </p>
           <div class="buttons">
-            <a class="button button-primary" href="#solution">Découvrir SmartSki</a>
-            <a class="button button-secondary" href="#contact">Nous contacter</a>
+            <a class="button button-primary" href="#solution" data-i18n="hero_button_1">Découvrir SmartSki</a>
+            <a class="button button-secondary" href="#contact" data-i18n="hero_button_2">Nous contacter</a>
           </div>
         </div>
 
-        <div class="device-card" aria-label="Illustration du concept SmartSki">
+        <div class="device-card" aria-label="SmartSki concept illustration">
           <div class="ski-visual">
             <div class="ski-line"></div>
             <div class="pulse"></div>
             <div class="chip"></div>
           </div>
-          <h2>Un capteur invisible, une analyse complète.</h2>
-          <p>
+          <h2 data-i18n="device_title">Un capteur invisible, une analyse complète.</h2>
+          <p data-i18n="device_text">
             SmartSki transforme le ski de fond en plateforme de mesure, sans ajouter
             d’équipement externe au skieur.
           </p>
@@ -568,8 +620,8 @@
     <section>
       <div class="container">
         <div class="section-title">
-          <h2>Les fondeurs veulent déjà mieux comprendre leurs données.</h2>
-          <p>
+          <h2 data-i18n="need_title">Les fondeurs veulent déjà mieux comprendre leurs données.</h2>
+          <p data-i18n="need_text">
             L’intérêt pour les données d’entraînement existe déjà. Le problème n’est pas
             l’adoption des outils numériques, mais la qualité et la pertinence des données
             disponibles spécifiquement pour le ski de fond.
@@ -579,15 +631,15 @@
         <div class="stats">
           <div class="stat">
             <strong>92%</strong>
-            <span>des fondeurs utilisent déjà un produit électronique pour enregistrer leurs données d’entraînement.</span>
+            <span data-i18n="stat_1">des fondeurs utilisent déjà un produit électronique pour enregistrer leurs données d’entraînement.</span>
           </div>
           <div class="stat">
             <strong>89%</strong>
-            <span>pensent qu’il existe un manque à combler dans la mesure de données en ski de fond.</span>
+            <span data-i18n="stat_2">pensent qu’il existe un manque à combler dans la mesure de données en ski de fond.</span>
           </div>
           <div class="stat">
             <strong>13M</strong>
-            <span>de personnes composent le marché total adressable du ski de fond.</span>
+            <span data-i18n="stat_3">de personnes composent le marché total adressable du ski de fond.</span>
           </div>
         </div>
       </div>
@@ -596,8 +648,8 @@
     <section id="solution" class="solution">
       <div class="container">
         <div class="section-title">
-          <h2>SmartSki agit comme un entraîneur personnel disponible partout.</h2>
-          <p>
+          <h2 data-i18n="solution_title">SmartSki agit comme un entraîneur personnel disponible partout.</h2>
+          <p data-i18n="solution_text">
             En combinant capteurs embarqués, traitement de données et connectivité Bluetooth,
             SmartSki permet au skieur de mesurer sa performance, d’identifier ses lacunes et
             de suivre sa progression.
@@ -607,24 +659,24 @@
         <div class="feature-grid">
           <div class="feature">
             <div class="number">01</div>
-            <h3>Intégration dans le ski</h3>
-            <p>
+            <h3 data-i18n="feature_1_title">Intégration dans le ski</h3>
+            <p data-i18n="feature_1_text">
               La technologie est intégrée directement dans l’équipement, sans capteur porté
               à la poitrine, au poignet ou dans les bâtons.
             </p>
           </div>
           <div class="feature">
             <div class="number">02</div>
-            <h3>Données en temps réel</h3>
-            <p>
+            <h3 data-i18n="feature_2_title">Données en temps réel</h3>
+            <p data-i18n="feature_2_text">
               Les indicateurs de performance clés sont communiqués au skieur par Bluetooth
               pour un retour rapide et utile.
             </p>
           </div>
           <div class="feature">
             <div class="number">03</div>
-            <h3>Analyse avancée</h3>
-            <p>
+            <h3 data-i18n="feature_3_title">Analyse avancée</h3>
+            <p data-i18n="feature_3_text">
               Une application en ligne permet d’aller plus loin grâce à une analyse détaillée
               de la technique et de la progression.
             </p>
@@ -636,28 +688,28 @@
     <section id="market">
       <div class="container split">
         <div class="section-title">
-          <h2>Un marché international dominé par l’Europe.</h2>
-          <p>
+          <h2 data-i18n="market_title">Un marché international dominé par l’Europe.</h2>
+          <p data-i18n="market_text">
             Notre stratégie vise d’abord les skis haut de gamme et de performance, en
             s’associant directement avec des fabricants établis dans le marché du ski de fond.
           </p>
         </div>
 
         <div class="panel">
-          <h3>Segments visés</h3>
+          <h3 data-i18n="segments_title">Segments visés</h3>
           <ul>
-            <li><strong>TAM :</strong> 13M de fondeurs, pour un marché estimé à 1,2B$.</li>
-            <li><strong>SAM :</strong> 2M d’acheteurs de skis haut de gamme et de performance.</li>
-            <li><strong>SOM :</strong> 250 000 adoptants précoces estimés.</li>
+            <li data-i18n="segment_1"><strong>TAM :</strong> 13M de fondeurs, pour un marché estimé à 1,2B$.</li>
+            <li data-i18n="segment_2"><strong>SAM :</strong> 2M d’acheteurs de skis haut de gamme et de performance.</li>
+            <li data-i18n="segment_3"><strong>SOM :</strong> 250 000 adoptants précoces estimés.</li>
           </ul>
 
           <div class="market-bars">
             <div>
-              <div class="bar-label"><span>Europe</span><span>77%</span></div>
+              <div class="bar-label"><span data-i18n="europe">Europe</span><span>77%</span></div>
               <div class="bar-track"><div class="bar-fill" style="width: 77%;"></div></div>
             </div>
             <div>
-              <div class="bar-label"><span>Amérique du Nord</span><span>18%</span></div>
+              <div class="bar-label"><span data-i18n="north_america">Amérique du Nord</span><span>18%</span></div>
               <div class="bar-track"><div class="bar-fill" style="width: 18%;"></div></div>
             </div>
           </div>
@@ -668,8 +720,8 @@
     <section id="business" class="business">
       <div class="container">
         <div class="section-title">
-          <h2>Un modèle B2B pensé pour les fabricants de ski.</h2>
-          <p>
+          <h2 data-i18n="business_title">Un modèle B2B pensé pour les fabricants de ski.</h2>
+          <p data-i18n="business_text">
             Notre objectif n’est pas seulement de vendre un accessoire aux skieurs, mais
             d’intégrer SmartSki directement dans les skis grâce à des partenariats avec les
             manufacturiers.
@@ -678,22 +730,22 @@
 
         <div class="business-grid">
           <div class="business-card">
-            <h3>Vente du hardware</h3>
-            <p>
+            <h3 data-i18n="business_1_title">Vente du hardware</h3>
+            <p data-i18n="business_1_text">
               La première source de revenus provient de la vente de la technologie aux
               fabricants qui l’intègrent dans leurs skis.
             </p>
           </div>
           <div class="business-card">
-            <h3>Valorisation des données</h3>
-            <p>
+            <h3 data-i18n="business_2_title">Valorisation des données</h3>
+            <p data-i18n="business_2_text">
               Les données d’utilisation peuvent offrir une meilleure compréhension des profils
               clients et des usages réels des produits.
             </p>
           </div>
           <div class="business-card">
-            <h3>Fonctionnalités SaaS</h3>
-            <p>
+            <h3 data-i18n="business_3_title">Fonctionnalités SaaS</h3>
+            <p data-i18n="business_3_text">
               Des fonctionnalités avancées d’analyse pourront être offertes aux skieurs à même
               l’application.
             </p>
@@ -705,23 +757,23 @@
     <section>
       <div class="container split">
         <div class="panel">
-          <h3>Validation terrain</h3>
-          <p>
+          <h3 data-i18n="validation_title">Validation terrain</h3>
+          <p data-i18n="validation_text_1">
             Nous travaillons à démontrer la faisabilité technique de l’intégration dans le ski,
             ainsi que la valeur réelle pour les utilisateurs finaux.
           </p>
-          <p>
+          <p data-i18n="validation_text_2">
             Des partenariats avec les fédérations de ski et de biathlon du Québec permettent
             de préparer un projet pilote auprès d’athlètes et d’obtenir une rétroaction directe.
           </p>
         </div>
 
         <div class="panel">
-          <h3>Pourquoi maintenant?</h3>
+          <h3 data-i18n="why_title">Pourquoi maintenant?</h3>
           <ul>
-            <li>La connectivité et les données prennent une place croissante dans le sport.</li>
-            <li>Le ski de fond manque encore d’outils de mesure technique intégrés.</li>
-            <li>Les progrès en intelligence artificielle ouvrent la porte à une analyse plus fine de la performance.</li>
+            <li data-i18n="why_1">La connectivité et les données prennent une place croissante dans le sport.</li>
+            <li data-i18n="why_2">Le ski de fond manque encore d’outils de mesure technique intégrés.</li>
+            <li data-i18n="why_3">Les progrès en intelligence artificielle ouvrent la porte à une analyse plus fine de la performance.</li>
           </ul>
         </div>
       </div>
@@ -730,8 +782,8 @@
     <section class="competitors">
       <div class="container">
         <div class="section-title">
-          <h2>Une approche différente des solutions existantes.</h2>
-          <p>
+          <h2 data-i18n="competitors_title">Une approche différente des solutions existantes.</h2>
+          <p data-i18n="competitors_text">
             Plusieurs produits mesurent déjà certains aspects de l’entraînement, mais SmartSki
             se distingue par son intégration directe dans le ski et son positionnement auprès
             des fabricants.
@@ -742,36 +794,36 @@
           <table>
             <thead>
               <tr>
-                <th>Solution</th>
-                <th>Position du capteur</th>
-                <th>Intégrée au ski</th>
-                <th>Positionnement principal</th>
+                <th data-i18n="table_solution">Solution</th>
+                <th data-i18n="table_position">Position du capteur</th>
+                <th data-i18n="table_integrated">Intégrée au ski</th>
+                <th data-i18n="table_positioning">Positionnement principal</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td><strong>SmartSki</strong></td>
-                <td>À l’intérieur du ski</td>
-                <td class="check">Oui</td>
-                <td>B2B avec fabricants de skis</td>
+                <td data-i18n="smart_position">À l’intérieur du ski</td>
+                <td class="check" data-i18n="yes">Oui</td>
+                <td data-i18n="smart_model">B2B avec fabricants de skis</td>
               </tr>
               <tr>
                 <td>Archinisis</td>
-                <td>Poitrine</td>
-                <td class="no">Non</td>
+                <td data-i18n="arch_position">Poitrine</td>
+                <td class="no" data-i18n="no_1">Non</td>
                 <td>B2C</td>
               </tr>
               <tr>
                 <td>Skisens</td>
-                <td>Poignée de bâton</td>
-                <td class="no">Non</td>
+                <td data-i18n="skisens_position">Poignée de bâton</td>
+                <td class="no" data-i18n="no_2">Non</td>
                 <td>B2C</td>
               </tr>
               <tr>
                 <td>Garmin</td>
-                <td>Montre</td>
-                <td class="no">Non</td>
-                <td>Accessoire sportif général</td>
+                <td data-i18n="garmin_position">Montre</td>
+                <td class="no" data-i18n="no_3">Non</td>
+                <td data-i18n="garmin_model">Accessoire sportif général</td>
               </tr>
             </tbody>
           </table>
@@ -782,8 +834,8 @@
     <section id="contact" class="contact">
       <div class="container">
         <div class="contact-card">
-          <h2>Construisons le futur du ski de fond intelligent.</h2>
-          <p>
+          <h2 data-i18n="contact_title">Construisons le futur du ski de fond intelligent.</h2>
+          <p data-i18n="contact_text">
             Vous êtes fabricant, athlète, entraîneur ou partenaire potentiel? Contactez-nous
             pour discuter de SmartSki et de l’intégration de données de performance dans
             l’équipement de ski de fond.
@@ -795,9 +847,176 @@
   </main>
 
   <footer>
-    <div class="container">
+    <div class="container" data-i18n="footer">
       © 2026 Kineletic Sport Technologies — SmartSki.
     </div>
   </footer>
+
+  <script>
+    const translations = {
+      fr: {
+        page_title: "Kineletic Sport Technologies | SmartSki",
+        page_description: "SmartSki est une technologie intégrée au ski de fond pour mesurer, analyser et améliorer la performance des fondeurs en temps réel.",
+        nav_solution: "SmartSki",
+        nav_market: "Marché",
+        nav_business: "Modèle",
+        nav_contact: "Contact",
+        hero_eyebrow: "Ski de fond · Données · Performance",
+        hero_title: "Le ski intelligent, intégré directement dans l’équipement.",
+        hero_text: "SmartSki est une puce électronique intégrée à l’intérieur même du ski de fond. Elle capture les mouvements du skieur, analyse sa performance et communique les indicateurs clés en temps réel par Bluetooth.",
+        hero_button_1: "Découvrir SmartSki",
+        hero_button_2: "Nous contacter",
+        device_title: "Un capteur invisible, une analyse complète.",
+        device_text: "SmartSki transforme le ski de fond en plateforme de mesure, sans ajouter d’équipement externe au skieur.",
+        need_title: "Les fondeurs veulent déjà mieux comprendre leurs données.",
+        need_text: "L’intérêt pour les données d’entraînement existe déjà. Le problème n’est pas l’adoption des outils numériques, mais la qualité et la pertinence des données disponibles spécifiquement pour le ski de fond.",
+        stat_1: "des fondeurs utilisent déjà un produit électronique pour enregistrer leurs données d’entraînement.",
+        stat_2: "pensent qu’il existe un manque à combler dans la mesure de données en ski de fond.",
+        stat_3: "de personnes composent le marché total adressable du ski de fond.",
+        solution_title: "SmartSki agit comme un entraîneur personnel disponible partout.",
+        solution_text: "En combinant capteurs embarqués, traitement de données et connectivité Bluetooth, SmartSki permet au skieur de mesurer sa performance, d’identifier ses lacunes et de suivre sa progression.",
+        feature_1_title: "Intégration dans le ski",
+        feature_1_text: "La technologie est intégrée directement dans l’équipement, sans capteur porté à la poitrine, au poignet ou dans les bâtons.",
+        feature_2_title: "Données en temps réel",
+        feature_2_text: "Les indicateurs de performance clés sont communiqués au skieur par Bluetooth pour un retour rapide et utile.",
+        feature_3_title: "Analyse avancée",
+        feature_3_text: "Une application en ligne permet d’aller plus loin grâce à une analyse détaillée de la technique et de la progression.",
+        market_title: "Un marché international dominé par l’Europe.",
+        market_text: "Notre stratégie vise d’abord les skis haut de gamme et de performance, en s’associant directement avec des fabricants établis dans le marché du ski de fond.",
+        segments_title: "Segments visés",
+        segment_1: "<strong>TAM :</strong> 13M de fondeurs, pour un marché estimé à 1,2B$.",
+        segment_2: "<strong>SAM :</strong> 2M d’acheteurs de skis haut de gamme et de performance.",
+        segment_3: "<strong>SOM :</strong> 250 000 adoptants précoces estimés.",
+        europe: "Europe",
+        north_america: "Amérique du Nord",
+        business_title: "Un modèle B2B pensé pour les fabricants de ski.",
+        business_text: "Notre objectif n’est pas seulement de vendre un accessoire aux skieurs, mais d’intégrer SmartSki directement dans les skis grâce à des partenariats avec les manufacturiers.",
+        business_1_title: "Vente du hardware",
+        business_1_text: "La première source de revenus provient de la vente de la technologie aux fabricants qui l’intègrent dans leurs skis.",
+        business_2_title: "Valorisation des données",
+        business_2_text: "Les données d’utilisation peuvent offrir une meilleure compréhension des profils clients et des usages réels des produits.",
+        business_3_title: "Fonctionnalités SaaS",
+        business_3_text: "Des fonctionnalités avancées d’analyse pourront être offertes aux skieurs à même l’application.",
+        validation_title: "Validation terrain",
+        validation_text_1: "Nous travaillons à démontrer la faisabilité technique de l’intégration dans le ski, ainsi que la valeur réelle pour les utilisateurs finaux.",
+        validation_text_2: "Des partenariats avec les fédérations de ski et de biathlon du Québec permettent de préparer un projet pilote auprès d’athlètes et d’obtenir une rétroaction directe.",
+        why_title: "Pourquoi maintenant?",
+        why_1: "La connectivité et les données prennent une place croissante dans le sport.",
+        why_2: "Le ski de fond manque encore d’outils de mesure technique intégrés.",
+        why_3: "Les progrès en intelligence artificielle ouvrent la porte à une analyse plus fine de la performance.",
+        competitors_title: "Une approche différente des solutions existantes.",
+        competitors_text: "Plusieurs produits mesurent déjà certains aspects de l’entraînement, mais SmartSki se distingue par son intégration directe dans le ski et son positionnement auprès des fabricants.",
+        table_solution: "Solution",
+        table_position: "Position du capteur",
+        table_integrated: "Intégrée au ski",
+        table_positioning: "Positionnement principal",
+        smart_position: "À l’intérieur du ski",
+        yes: "Oui",
+        smart_model: "B2B avec fabricants de skis",
+        arch_position: "Poitrine",
+        skisens_position: "Poignée de bâton",
+        garmin_position: "Montre",
+        no_1: "Non",
+        no_2: "Non",
+        no_3: "Non",
+        garmin_model: "Accessoire sportif général",
+        contact_title: "Construisons le futur du ski de fond intelligent.",
+        contact_text: "Vous êtes fabricant, athlète, entraîneur ou partenaire potentiel? Contactez-nous pour discuter de SmartSki et de l’intégration de données de performance dans l’équipement de ski de fond.",
+        footer: "© 2026 Kineletic Sport Technologies — SmartSki."
+      },
+      en: {
+        page_title: "Kineletic Sport Technologies | SmartSki",
+        page_description: "SmartSki is an integrated cross-country skiing technology designed to measure, analyze, and improve skier performance in real time.",
+        nav_solution: "SmartSki",
+        nav_market: "Market",
+        nav_business: "Business model",
+        nav_contact: "Contact",
+        hero_eyebrow: "Cross-country skiing · Data · Performance",
+        hero_title: "Smart skiing, built directly into the equipment.",
+        hero_text: "SmartSki is an electronic chip integrated directly inside a cross-country ski. It captures the skier’s movements, analyzes performance, and communicates key indicators in real time through Bluetooth.",
+        hero_button_1: "Discover SmartSki",
+        hero_button_2: "Contact us",
+        device_title: "An invisible sensor, a complete analysis.",
+        device_text: "SmartSki turns the cross-country ski into a measurement platform without adding external equipment to the skier.",
+        need_title: "Skiers already want to better understand their data.",
+        need_text: "The interest in training data already exists. The problem is not the adoption of digital tools, but the quality and relevance of the data currently available for cross-country skiing.",
+        stat_1: "of cross-country skiers already use an electronic product to record their training data.",
+        stat_2: "believe there is a gap to fill in cross-country skiing data measurement.",
+        stat_3: "people make up the total addressable market for cross-country skiing.",
+        solution_title: "SmartSki acts like a personal coach available everywhere.",
+        solution_text: "By combining embedded sensors, data processing, and Bluetooth connectivity, SmartSki helps skiers measure performance, identify weaknesses, and quantify progress.",
+        feature_1_title: "Integrated into the ski",
+        feature_1_text: "The technology is built directly into the equipment, with no chest strap, wrist device, or pole-mounted sensor required.",
+        feature_2_title: "Real-time data",
+        feature_2_text: "Key performance indicators are transmitted to the skier through Bluetooth for fast and useful feedback.",
+        feature_3_title: "Advanced analysis",
+        feature_3_text: "An online application provides deeper analysis of technique, performance, and progression over time.",
+        market_title: "An international market dominated by Europe.",
+        market_text: "Our strategy first targets high-end and performance skis by partnering directly with established manufacturers in the cross-country skiing market.",
+        segments_title: "Target segments",
+        segment_1: "<strong>TAM:</strong> 13M cross-country skiers, with an estimated market of $1.2B.",
+        segment_2: "<strong>SAM:</strong> 2M buyers of high-end and performance skis.",
+        segment_3: "<strong>SOM:</strong> 250,000 estimated early adopters.",
+        europe: "Europe",
+        north_america: "North America",
+        business_title: "A B2B model designed for ski manufacturers.",
+        business_text: "Our goal is not only to sell an accessory to skiers, but to integrate SmartSki directly into skis through partnerships with manufacturers.",
+        business_1_title: "Hardware sales",
+        business_1_text: "The first revenue source comes from selling the technology to manufacturers who integrate it into their skis.",
+        business_2_title: "Data value",
+        business_2_text: "Usage data can provide manufacturers with a better understanding of customer profiles and real product use.",
+        business_3_title: "SaaS features",
+        business_3_text: "Advanced analysis features can eventually be offered to skiers directly through the application.",
+        validation_title: "Field validation",
+        validation_text_1: "We are working to demonstrate the technical feasibility of integrating the technology into the ski, as well as its real value for end users.",
+        validation_text_2: "Partnerships with Quebec ski and biathlon federations support a pilot project with athletes and direct feedback from end users.",
+        why_title: "Why now?",
+        why_1: "Connectivity and data are becoming increasingly important in sports.",
+        why_2: "Cross-country skiing still lacks integrated technical measurement tools.",
+        why_3: "Advances in artificial intelligence open the door to more precise performance analysis.",
+        competitors_title: "A different approach from existing solutions.",
+        competitors_text: "Several products already measure parts of training performance, but SmartSki stands out through its direct integration into the ski and its manufacturer-focused positioning.",
+        table_solution: "Solution",
+        table_position: "Sensor position",
+        table_integrated: "Integrated into ski",
+        table_positioning: "Main positioning",
+        smart_position: "Inside the ski",
+        yes: "Yes",
+        smart_model: "B2B with ski manufacturers",
+        arch_position: "Chest",
+        skisens_position: "Pole grip",
+        garmin_position: "Watch",
+        no_1: "No",
+        no_2: "No",
+        no_3: "No",
+        garmin_model: "General sports accessory",
+        contact_title: "Let’s build the future of smart cross-country skiing.",
+        contact_text: "Are you a manufacturer, athlete, coach, or potential partner? Contact us to discuss SmartSki and the integration of performance data into cross-country skiing equipment.",
+        footer: "© 2026 Kineletic Sport Technologies — SmartSki."
+      }
+    };
+
+    function setLanguage(language) {
+      const dictionary = translations[language];
+
+      document.documentElement.lang = language;
+      document.title = dictionary.page_title;
+      document.querySelector('meta[name="description"]').setAttribute('content', dictionary.page_description);
+
+      document.querySelectorAll('[data-i18n]').forEach((element) => {
+        const key = element.getAttribute('data-i18n');
+        if (dictionary[key]) {
+          element.innerHTML = dictionary[key];
+        }
+      });
+
+      document.getElementById('btn-fr').classList.toggle('active', language === 'fr');
+      document.getElementById('btn-en').classList.toggle('active', language === 'en');
+      localStorage.setItem('preferredLanguage', language);
+    }
+
+    const savedLanguage = localStorage.getItem('preferredLanguage') || 'fr';
+    setLanguage(savedLanguage);
+  </script>
 </body>
 </html>
