@@ -3,725 +3,169 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kinelytic Sport Technologies | SmartSki</title>
-  <meta name="description" content="SmartSki est une technologie intégrée au ski de fond pour mesurer, analyser et améliorer la performance des fondeurs." />
-
-  <style>
-    :root {
-      --bg: #07111f;
-      --bg-soft: #0f1f35;
-      --text: #102033;
-      --muted: #627086;
-      --accent: #1d75d8;
-      --accent-soft: #e8f2ff;
-      --snow: #f7fbff;
-      --border: #dbe5f0;
-      --white: #ffffff;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.6;
-      color: var(--text);
-      background: var(--snow);
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(1120px, 92%);
-      margin: 0 auto;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(7, 17, 31, 0.94);
-      backdrop-filter: blur(10px);
-      color: var(--white);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    nav {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-    }
-
-    .logo {
-      font-weight: 800;
-      letter-spacing: 0.02em;
-      font-size: 1.08rem;
-      white-space: nowrap;
-    }
-
-    .logo span {
-      color: #93c5fd;
-    }
-
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      color: #c8d5e6;
-      font-size: 0.95rem;
-    }
-
-    .nav-links a:hover {
-      color: var(--white);
-    }
-
-    .language-switch {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-    }
-
-    .language-switch button {
-      border: 0;
-      cursor: pointer;
-      padding: 7px 11px;
-      border-radius: 999px;
-      background: transparent;
-      color: #c8d5e6;
-      font-weight: 800;
-      font-size: 0.82rem;
-    }
-
-    .language-switch button.active {
-      color: #07111f;
-      background: var(--white);
-    }
-
-    .hero {
-      color: var(--white);
-      background:
-        radial-gradient(circle at 85% 20%, rgba(56, 189, 248, 0.28), transparent 34%),
-        linear-gradient(135deg, #07111f 0%, #0f2a4c 52%, #123f70 100%);
-      padding: 96px 0 110px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 48px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 22px;
-      padding: 7px 13px;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      border-radius: 999px;
-      color: #dbeafe;
-      font-size: 0.9rem;
-      background: rgba(255, 255, 255, 0.06);
-    }
-
-    h1 {
-      font-size: clamp(2.45rem, 5.4vw, 4.7rem);
-      line-height: 1.03;
-      letter-spacing: -0.04em;
-      margin-bottom: 24px;
-    }
-
-    .hero p {
-      color: #dbeafe;
-      max-width: 650px;
-      font-size: 1.14rem;
-      margin-bottom: 32px;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 13px 22px;
-      border-radius: 12px;
-      font-weight: 800;
-      transition: 0.2s ease;
-    }
-
-    .button-primary {
-      background: var(--white);
-      color: var(--bg);
-    }
-
-    .button-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 16px 35px rgba(0, 0, 0, 0.18);
-    }
-
-    .button-secondary {
-      color: var(--white);
-      border: 1px solid rgba(255, 255, 255, 0.32);
-    }
-
-    .button-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    .device-card {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 28px;
-      padding: 30px;
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
-    }
-
-    .ski-visual {
-      position: relative;
-      height: 260px;
-      border-radius: 22px;
-      background: linear-gradient(145deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04));
-      overflow: hidden;
-      margin-bottom: 24px;
-    }
-
-    .ski-line {
-      position: absolute;
-      left: 12%;
-      right: 12%;
-      top: 52%;
-      height: 18px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #e0f2fe, #60a5fa, #e0f2fe);
-      transform: rotate(-10deg);
-      box-shadow: 0 0 40px rgba(147, 197, 253, 0.55);
-    }
-
-    .chip {
-      position: absolute;
-      left: 48%;
-      top: 42%;
-      width: 54px;
-      height: 54px;
-      border-radius: 15px;
-      background: #07111f;
-      border: 2px solid #93c5fd;
-      transform: rotate(-10deg);
-      box-shadow: 0 0 28px rgba(147, 197, 253, 0.8);
-    }
-
-    .pulse {
-      position: absolute;
-      left: 50%;
-      top: 45%;
-      width: 110px;
-      height: 110px;
-      border: 1px solid rgba(147, 197, 253, 0.6);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .device-card h2 {
-      font-size: 1.35rem;
-      margin-bottom: 8px;
-    }
-
-    .device-card p {
-      margin: 0;
-      color: #cfe4ff;
-      font-size: 0.98rem;
-    }
-
-    section {
-      padding: 78px 0;
-    }
-
-    .section-title {
-      max-width: 760px;
-      margin-bottom: 38px;
-    }
-
-    .section-title h2 {
-      font-size: clamp(1.9rem, 3.5vw, 2.7rem);
-      letter-spacing: -0.03em;
-      line-height: 1.12;
-      margin-bottom: 12px;
-    }
-
-    .section-title p {
-      color: var(--muted);
-      font-size: 1.04rem;
-    }
-
-    .solution {
-      background: var(--white);
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .feature {
-      background: var(--snow);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 28px;
-    }
-
-    .feature .number {
-      width: 42px;
-      height: 42px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 18px;
-      border-radius: 12px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-weight: 800;
-    }
-
-    .feature h3 {
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-    }
-
-    .feature p {
-      color: var(--muted);
-    }
-
-    .split {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 46px;
-      align-items: start;
-    }
-
-    .panel {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 32px;
-      box-shadow: 0 12px 34px rgba(16, 32, 51, 0.07);
-    }
-
-    .panel h3 {
-      margin-bottom: 14px;
-      font-size: 1.35rem;
-    }
-
-    .panel p,
-    .panel li {
-      color: var(--muted);
-    }
-
-    .panel p + p {
-      margin-top: 14px;
-    }
-
-    .panel ul {
-      padding-left: 20px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .tech {
-      background: var(--bg-soft);
-      color: var(--white);
-    }
-
-    .tech .section-title p {
-      color: #c8d5e6;
-    }
-
-    .tech-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .tech-card {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 22px;
-      padding: 28px;
-    }
-
-    .tech-card h3 {
-      margin-bottom: 10px;
-    }
-
-    .tech-card p {
-      color: #c8d5e6;
-    }
-
-    .contact {
-      text-align: center;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(29, 117, 216, 0.16), transparent 35%),
-        var(--snow);
-    }
-
-    .contact-card {
-      max-width: 780px;
-      margin: 0 auto;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 44px;
-      box-shadow: 0 18px 50px rgba(16, 32, 51, 0.08);
-    }
-
-    .contact-card h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.1;
-      margin-bottom: 14px;
-    }
-
-    .contact-card p {
-      color: var(--muted);
-      margin: 0 auto 26px;
-      max-width: 620px;
-    }
-
-    footer {
-      background: var(--bg);
-      color: #9fb0c6;
-      padding: 26px 0;
-      text-align: center;
-      font-size: 0.92rem;
-    }
-
-    @media (max-width: 980px) {
-      nav {
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 18px 0;
-      }
-
-      .nav-right {
-        width: 100%;
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 16px;
-      }
-
-      .nav-links {
-        flex-wrap: wrap;
-        gap: 14px;
-      }
-
-      .hero-grid,
-      .split,
-      .feature-grid,
-      .tech-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        padding: 72px 0 86px;
-      }
-
-      section {
-        padding: 62px 0;
-      }
-    }
-  </style>
+  <title>Kinelytic Sport | Mesurer l'excellence</title>
+  <meta
+    name="description"
+    content="Kinelytic Sport conçoit des capteurs sportifs, des outils de traitement de données et des logiciels d'analyse pour mesurer la performance."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <div class="container">
-      <nav>
-        <a href="#top" class="logo">Kinelytic <span>Sport Technologies</span></a>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Navigation principale">
+      <a class="brand" href="#accueil" aria-label="Kinelytic Sport - Accueil">
+        <span class="brand-mark">KS</span>
+        <span>Kinelytic Sport</span>
+      </a>
 
-        <div class="nav-right">
-          <div class="nav-links">
-            <a href="#solution" data-i18n="nav_solution">SmartSki</a>
-            <a href="#technology" data-i18n="nav_technology">Technologie</a>
-            <a href="#vision" data-i18n="nav_vision">Vision</a>
-            <a href="#contact" data-i18n="nav_contact">Contact</a>
-          </div>
-
-          <div class="language-switch" aria-label="Language switcher">
-            <button type="button" id="btn-fr" class="active" onclick="setLanguage('fr')">FR</button>
-            <button type="button" id="btn-en" onclick="setLanguage('en')">EN</button>
-          </div>
-        </div>
-      </nav>
-    </div>
+      <div class="nav-links">
+        <a href="#accueil">Accueil</a>
+        <a href="#apropos">À propos</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
   </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <span class="eyebrow" data-i18n="hero_eyebrow">Ski de fond · Données · Performance</span>
-          <h1 data-i18n="hero_title">Le ski intelligent, intégré directement dans l’équipement.</h1>
-          <p data-i18n="hero_text">
-            SmartSki est une technologie intégrée au ski de fond qui vise à mieux mesurer,
-            comprendre et améliorer la performance des fondeurs.
-          </p>
-          <div class="buttons">
-            <a class="button button-primary" href="#solution" data-i18n="hero_button_1">Découvrir SmartSki</a>
-            <a class="button button-secondary" href="#contact" data-i18n="hero_button_2">Nous contacter</a>
-          </div>
-        </div>
-
-        <div class="device-card" aria-label="SmartSki concept illustration">
-          <div class="ski-visual">
-            <div class="ski-line"></div>
-            <div class="pulse"></div>
-            <div class="chip"></div>
-          </div>
-          <h2 data-i18n="device_title">Un capteur discret, une meilleure compréhension du mouvement.</h2>
-          <p data-i18n="device_text">
-            SmartSki transforme le ski en plateforme de mesure, sans ajouter d’équipement externe complexe au skieur.
-          </p>
+  <main>
+    <section id="accueil" class="hero section">
+      <div class="hero-media" aria-hidden="true"></div>
+      <div class="hero-overlay"></div>
+      <div class="container hero-content">
+        <p class="eyebrow">Capteurs sportifs sur mesure</p>
+        <h1>Mesurer l'excellence, un capteur à la fois.</h1>
+        <p class="hero-text">
+          Kinelytic Sport offre aux athlètes et aux partenaires de l'industrie sportive des
+          solutions élégantes pour mesurer la performance et accélérer le progrès.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#services">Voir nos services</a>
+          <a class="button button-secondary" href="#contact">Nous contacter</a>
         </div>
       </div>
     </section>
 
-    <section id="solution" class="solution">
+    <section id="apropos" class="section about">
+      <div class="container about-grid">
+        <div class="section-copy">
+          <p class="eyebrow">À propos de nous</p>
+          <h2>Deux ingénieurs, une passion pour l'atteinte de l'excellence.</h2>
+          <p>
+            Kinelytic Sport a été fondée par Simon Gauthier et Benjamin Girard, deux étudiants
+            en génie de l'Université Laval. Benjamin se spécialise en conception de systèmes de
+            mesure électroniques, et Simon en analyse de données pour la performance dans le sport.
+          </p>
+          <p>
+            Ensemble, ils ont pour objectif de révolutionner le monde du sport, un capteur à la fois.
+          </p>
+        </div>
+
+        <figure class="founders-photo">
+          <div class="portrait-grid">
+            <img
+              src="assets/Z63_7741-17.jpg"
+              alt="Portrait d'un des fondateurs de Kinelytic Sport"
+            />
+            <img
+              src="assets/Z63_7743-20.jpg"
+              alt="Portrait d'un des fondateurs de Kinelytic Sport"
+            />
+          </div>
+          <figcaption>
+            <strong>Simon Gauthier</strong>
+            <span>+</span>
+            <strong>Benjamin Girard</strong>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="services" class="section services">
       <div class="container">
-        <div class="section-title">
-          <h2 data-i18n="solution_title">Une nouvelle façon de mesurer la performance en ski de fond.</h2>
-          <p data-i18n="solution_text">
-            Les outils d’entraînement actuels donnent souvent une vue partielle de la performance.
-            SmartSki vise à rapprocher la mesure du mouvement réel du ski, là où l’action se produit.
+        <div class="section-heading">
+          <p class="eyebrow">Services</p>
+          <h2>Des solutions personnalisées pour mesurer la performance sportive.</h2>
+          <p>
+            Kinelytic se spécialise dans la conception de capteurs sportifs pour les sports
+            d'endurance et de glisse, et nous adaptons chaque capteur aux besoins précis de nos
+            clients. Nous offrons des services personnalisés en conception de capteurs sportifs,
+            traitement de données et logiciels d'analyse, afin d'offrir un service clé en main à
+            nos clients.
           </p>
         </div>
 
-        <div class="feature-grid">
-          <div class="feature">
-            <div class="number">01</div>
-            <h3 data-i18n="feature_1_title">Intégré à l’équipement</h3>
-            <p data-i18n="feature_1_text">
-              La technologie est conçue pour être intégrée au ski, afin de garder une expérience naturelle pour l’athlète.
+        <div class="service-grid" aria-label="Services offerts">
+          <article class="service-card">
+            <span class="service-icon">01</span>
+            <h3>Conception de capteurs sportifs</h3>
+            <p>
+              Développement de capteurs adaptés au geste, au matériel et aux contraintes du terrain.
             </p>
-          </div>
-          <div class="feature">
-            <div class="number">02</div>
-            <h3 data-i18n="feature_2_title">Données utiles</h3>
-            <p data-i18n="feature_2_text">
-              SmartSki vise à transformer les mouvements du skieur en indicateurs simples, compréhensibles et exploitables.
+          </article>
+
+          <article class="service-card">
+            <span class="service-icon">02</span>
+            <h3>Traitement de données</h3>
+            <p>
+              Transformation des mesures brutes en indicateurs fiables, lisibles et exploitables.
             </p>
-          </div>
-          <div class="feature">
-            <div class="number">03</div>
-            <h3 data-i18n="feature_3_title">Analyse de progression</h3>
-            <p data-i18n="feature_3_text">
-              L’objectif est d’aider les skieurs et entraîneurs à mieux suivre l’évolution de la technique et de la performance.
+          </article>
+
+          <article class="service-card">
+            <span class="service-icon">03</span>
+            <h3>Logiciels d'analyse</h3>
+            <p>
+              Outils clairs pour suivre, comparer et comprendre la progression des athlètes.
             </p>
-          </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="technology" class="tech">
-      <div class="container">
-        <div class="section-title">
-          <h2 data-i18n="technology_title">Une technologie conçue pour le terrain.</h2>
-          <p data-i18n="technology_text">
-            SmartSki combine mesure embarquée, traitement de données et connectivité pour rendre l’analyse de la performance plus accessible.
+    <section id="contact" class="section contact">
+      <div class="container contact-grid">
+        <div class="section-copy">
+          <p class="eyebrow">Contact</p>
+          <h2>Prêts à savoir comment nous pouvons répondre à vos besoins?</h2>
+          <p>
+            Contactez-nous en utilisant le formulaire ci-dessous. Votre message sera adressé à
+            <a href="mailto:contact@kinelytic.com">contact@kinelytic.com</a>.
           </p>
         </div>
 
-        <div class="tech-grid">
-          <div class="tech-card">
-            <h3 data-i18n="tech_1_title">Mesure embarquée</h3>
-            <p data-i18n="tech_1_text">
-              Le système est pensé pour capturer les mouvements liés à la dynamique du ski pendant l’entraînement.
-            </p>
-          </div>
-          <div class="tech-card">
-            <h3 data-i18n="tech_2_title">Traitement intelligent</h3>
-            <p data-i18n="tech_2_text">
-              Les données sont traitées pour faire ressortir des indicateurs pertinents plutôt que de simples données brutes.
-            </p>
-          </div>
-          <div class="tech-card">
-            <h3 data-i18n="tech_3_title">Expérience simple</h3>
-            <p data-i18n="tech_3_text">
-              Le but est de fournir une expérience fluide, facile à utiliser et adaptée aux besoins des skieurs.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+        <form class="contact-form" id="contact-form">
+          <label for="name">Nom</label>
+          <input id="name" name="name" type="text" autocomplete="name" required />
 
-    <section id="vision">
-      <div class="container split">
-        <div class="section-title">
-          <h2 data-i18n="vision_title">Notre vision</h2>
-          <p data-i18n="vision_text">
-            Kinelytic Sport Technologies développe des outils à l’intersection du sport, de l’électronique et de l’analyse de données.
-          </p>
-        </div>
+          <label for="email">Courriel</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
 
-        <div class="panel">
-          <h3 data-i18n="public_title">Une approche centrée sur le skieur</h3>
-          <p data-i18n="public_text_1">
-            Notre objectif est de rendre les données de performance plus compréhensibles, plus utiles et mieux adaptées au ski de fond.
-          </p>
-          <p data-i18n="public_text_2">
-            Le projet est en développement. Nous travaillons à valider la technologie, améliorer l’expérience utilisateur et préparer les prochaines étapes.
-          </p>
-        </div>
-      </div>
-    </section>
+          <label for="subject">Sujet</label>
+          <input id="subject" name="subject" type="text" required />
 
-    <section id="contact" class="contact">
-      <div class="container">
-        <div class="contact-card">
-          <h2 data-i18n="contact_title">Construisons le futur du ski de fond intelligent.</h2>
-          <p data-i18n="contact_text">
-            Vous êtes athlète, entraîneur, fabricant ou partenaire potentiel? Contactez-nous pour discuter de SmartSki.
-          </p>
-          <a class="button button-primary" href="mailto:contact@kinelytic.com">contact@kinelytic.com</a>
-        </div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" required></textarea>
+
+          <button class="button button-primary" type="submit">Envoyer le message</button>
+          <p class="form-note" id="form-note" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container" data-i18n="footer">
-      © 2026 Kinelytic Sport Technologies — SmartSki.
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <img class="footer-logo" src="assets/KS blue logo.png" alt="Logo Kinelytic Sport" />
+      <p>© 2026 Kinelytic Sport. Tous droits réservés.</p>
     </div>
   </footer>
 
-  <script>
-    const translations = {
-      fr: {
-        page_title: "Kinelytic Sport Technologies | SmartSki",
-        page_description: "SmartSki est une technologie intégrée au ski de fond pour mesurer, analyser et améliorer la performance des fondeurs.",
-        nav_solution: "SmartSki",
-        nav_technology: "Technologie",
-        nav_vision: "Vision",
-        nav_contact: "Contact",
-        hero_eyebrow: "Ski de fond · Données · Performance",
-        hero_title: "Le ski intelligent, intégré directement dans l’équipement.",
-        hero_text: "SmartSki est une technologie intégrée au ski de fond qui vise à mieux mesurer, comprendre et améliorer la performance des fondeurs.",
-        hero_button_1: "Découvrir SmartSki",
-        hero_button_2: "Nous contacter",
-        device_title: "Un capteur discret, une meilleure compréhension du mouvement.",
-        device_text: "SmartSki transforme le ski en plateforme de mesure, sans ajouter d’équipement externe complexe au skieur.",
-        solution_title: "Une nouvelle façon de mesurer la performance en ski de fond.",
-        solution_text: "Les outils d’entraînement actuels donnent souvent une vue partielle de la performance. SmartSki vise à rapprocher la mesure du mouvement réel du ski, là où l’action se produit.",
-        feature_1_title: "Intégré à l’équipement",
-        feature_1_text: "La technologie est conçue pour être intégrée au ski, afin de garder une expérience naturelle pour l’athlète.",
-        feature_2_title: "Données utiles",
-        feature_2_text: "SmartSki vise à transformer les mouvements du skieur en indicateurs simples, compréhensibles et exploitables.",
-        feature_3_title: "Analyse de progression",
-        feature_3_text: "L’objectif est d’aider les skieurs et entraîneurs à mieux suivre l’évolution de la technique et de la performance.",
-        technology_title: "Une technologie conçue pour le terrain.",
-        technology_text: "SmartSki combine mesure embarquée, traitement de données et connectivité pour rendre l’analyse de la performance plus accessible.",
-        tech_1_title: "Mesure embarquée",
-        tech_1_text: "Le système est pensé pour capturer les mouvements liés à la dynamique du ski pendant l’entraînement.",
-        tech_2_title: "Traitement intelligent",
-        tech_2_text: "Les données sont traitées pour faire ressortir des indicateurs pertinents plutôt que de simples données brutes.",
-        tech_3_title: "Expérience simple",
-        tech_3_text: "Le but est de fournir une expérience fluide, facile à utiliser et adaptée aux besoins des skieurs.",
-        vision_title: "Notre vision",
-        vision_text: "Kinelytic Sport Technologies développe des outils à l’intersection du sport, de l’électronique et de l’analyse de données.",
-        public_title: "Une approche centrée sur le skieur",
-        public_text_1: "Notre objectif est de rendre les données de performance plus compréhensibles, plus utiles et mieux adaptées au ski de fond.",
-        public_text_2: "Le projet est en développement. Nous travaillons à valider la technologie, améliorer l’expérience utilisateur et préparer les prochaines étapes.",
-        contact_title: "Construisons le futur du ski de fond intelligent.",
-        contact_text: "Vous êtes athlète, entraîneur, fabricant ou partenaire potentiel? Contactez-nous pour discuter de SmartSki.",
-        footer: "© 2026 Kinelytic Sport Technologies — SmartSki."
-      },
-      en: {
-        page_title: "Kinelytic Sport Technologies | SmartSki",
-        page_description: "SmartSki is an integrated cross-country skiing technology designed to measure, analyze, and improve skier performance.",
-        nav_solution: "SmartSki",
-        nav_technology: "Technology",
-        nav_vision: "Vision",
-        nav_contact: "Contact",
-        hero_eyebrow: "Cross-country skiing · Data · Performance",
-        hero_title: "Smart skiing, built directly into the equipment.",
-        hero_text: "SmartSki is a technology integrated into cross-country skis to better measure, understand, and improve skier performance.",
-        hero_button_1: "Discover SmartSki",
-        hero_button_2: "Contact us",
-        device_title: "A discreet sensor, a better understanding of movement.",
-        device_text: "SmartSki turns the ski into a measurement platform without adding complex external equipment to the skier.",
-        solution_title: "A new way to measure cross-country skiing performance.",
-        solution_text: "Current training tools often provide only a partial view of performance. SmartSki aims to bring measurement closer to the ski’s real movement, where the action happens.",
-        feature_1_title: "Integrated into the equipment",
-        feature_1_text: "The technology is designed to be integrated into the ski, keeping the athlete’s experience natural.",
-        feature_2_title: "Useful data",
-        feature_2_text: "SmartSki aims to transform skier movement into simple, understandable, and actionable indicators.",
-        feature_3_title: "Progress analysis",
-        feature_3_text: "The goal is to help skiers and coaches better track the evolution of technique and performance.",
-        technology_title: "Technology designed for the field.",
-        technology_text: "SmartSki combines embedded measurement, data processing, and connectivity to make performance analysis more accessible.",
-        tech_1_title: "Embedded measurement",
-        tech_1_text: "The system is designed to capture movement related to ski dynamics during training.",
-        tech_2_title: "Intelligent processing",
-        tech_2_text: "Data is processed to extract relevant indicators rather than simply displaying raw data.",
-        tech_3_title: "Simple experience",
-        tech_3_text: "The goal is to provide a smooth, easy-to-use experience adapted to the needs of skiers.",
-        vision_title: "Our vision",
-        vision_text: "Kinelytic Sport Technologies develops tools at the intersection of sport, electronics, and data analysis.",
-        public_title: "A skier-centered approach",
-        public_text_1: "Our goal is to make performance data more understandable, useful, and better adapted to cross-country skiing.",
-        public_text_2: "The project is in development. We are working to validate the technology, improve the user experience, and prepare the next steps.",
-        contact_title: "Let’s build the future of smart cross-country skiing.",
-        contact_text: "Are you an athlete, coach, manufacturer, or potential partner? Contact us to discuss SmartSki.",
-        footer: "© 2026 Kinelytic Sport Technologies — SmartSki."
-      }
-    };
-
-    function setLanguage(language) {
-      const dictionary = translations[language];
-
-      document.documentElement.lang = language;
-      document.title = dictionary.page_title;
-      document.querySelector('meta[name="description"]').setAttribute('content', dictionary.page_description);
-
-      document.querySelectorAll('[data-i18n]').forEach((element) => {
-        const key = element.getAttribute('data-i18n');
-        if (dictionary[key]) {
-          element.innerHTML = dictionary[key];
-        }
-      });
-
-      document.getElementById('btn-fr').classList.toggle('active', language === 'fr');
-      document.getElementById('btn-en').classList.toggle('active', language === 'en');
-      localStorage.setItem('preferredLanguage', language);
-    }
-
-    const savedLanguage = localStorage.getItem('preferredLanguage') || 'fr';
-    setLanguage(savedLanguage);
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
