@@ -397,6 +397,12 @@ h3 {
   resize: vertical;
 }
 
+.form-honey {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+}
+
 .contact-form .button {
   width: 100%;
   margin-top: 8px;
